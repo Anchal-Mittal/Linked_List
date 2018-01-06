@@ -1,0 +1,88 @@
+//========================================= linked list=================================================================
+
+#include <iostream>
+#include<cstdio>
+using namespace std;
+
+//===========================================creating a node===========================================================
+
+class Node {
+  public:
+    int info;
+    Node *next;
+    Node(int el, Node *n=0){
+        info=el;
+        next=n;
+    }
+};
+
+//=================================================creating a list======================================================
+
+class List{
+    public:
+    Node *head;
+    Node *tail;
+    List(){
+        head=tail=NULL;
+    }
+    void insertElement();
+    void traverse();
+    void countOccurrence();
+};
+
+//========================================================insert the element ===========================================
+
+void List :: insertElement(){
+    char ch;
+    int info;
+    do{
+      cout << "ENTER THE ELEMENT DO U WANT TO INSERT " << endl;
+      cin >> info;
+      if(head==NULL)
+          head=tail=new Node(info);
+      else
+          head=new Node(info,head);
+      cout << "IF U WANT TO INSERT MORE ELEMENT " << endl;
+      cin >> ch;
+    }while(ch== 'Y'|| ch=='y');
+  }
+  
+//===================================count the occurrence of the given element=============================================
+void List :: countOccurrence(){
+    int element;
+    cout <<"\nENTER THE ELEMENT " <<endl;
+    cin >> element;
+    Node *temp =head;
+    int count=0;
+    while(temp!=NULL){
+        if(temp->info==element)
+        count++;
+        temp=temp->next;
+    }
+    if(count!=0)
+    cout << "\nTHE OCCURRENCE OF THE GIVEN ELEMENT " << count;
+    else
+    cout <<"THE GIVEN ELEMENT IS NOT EXIST" << endl;
+return;    
+} 
+
+//=============================================traversev a list=========================================================
+
+void List :: traverse(){
+    Node *node = head;
+    while(node !=NULL){
+       cout << node ->info << " ->";
+       node =node->next;
+    }
+}
+
+//====================================================main function====================================================
+
+int main(){
+    List list;
+    list.insertElement();
+    list.traverse();
+    list.countOccurrence();
+
+return 0;
+}
